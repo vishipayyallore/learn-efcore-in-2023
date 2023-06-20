@@ -37,11 +37,8 @@ static void GetAuthors()
 
     foreach (var author in authors)
     {
+        ForegroundColor = ConsoleColor.Blue;
         WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
-        foreach (var book in author.Books)
-        {
-            WriteLine($" {book.BookId}. {book.Title}");
-        }
     }
 }
 
