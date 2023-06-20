@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Publisher.Domain;
 
-namespace Publisher.Domain
+public class Book
 {
-    internal class Book
-    {
-    }
+    public int BookId { get; set; }
+
+    public string? Title { get; set; }
+
+    public DateTime PublishDate { get; set; }
+
+    public decimal BasePrice { get; set; }
+
+    public Author? Author { get; set; }
 }
