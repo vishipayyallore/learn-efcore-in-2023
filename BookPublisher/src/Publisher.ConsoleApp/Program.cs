@@ -74,7 +74,7 @@ static void GetAuthorsWithBooks()
         foreach (var book in author.Books)
         {
             ForegroundColor = ConsoleColor.Cyan;
-            WriteLine($" {book.BookId}. {book.Title}");
+            WriteLine($"\t{book.BookId}. {book.Title}");
         }
     }
 }
