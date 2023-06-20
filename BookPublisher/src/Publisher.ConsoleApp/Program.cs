@@ -10,6 +10,7 @@ using (PublisherDbContext context = new())
 GetAuthors();
 
 AddAuthor(new Author { FirstName = "Sri", LastName = "Varu" });
+AddAuthor(new Author { FirstName = "Scott", LastName = "Rudy" });
 
 GetAuthors();
 
@@ -20,7 +21,13 @@ AddAuthorWithBook(new Author { FirstName = "Julie", LastName = "Lerman" },
         new Book { Title = "Programming Entity Framework 2nd Ed", PublishDate = new DateTime(2010, 8, 1) }
     });
 
-GetAuthors();
+GetAuthorsWithBooks();
+
+ResetColor();
+
+WriteLine("\n\nPress any key ...");
+ReadKey();
+
 // ************************ ************************\\
 
 static void GetAuthors()
@@ -30,10 +37,10 @@ static void GetAuthors()
 
     foreach (var author in authors)
     {
-        Console.WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
+        WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
         foreach (var book in author.Books)
         {
-            Console.WriteLine($" {book.BookId}. {book.Title}");
+            WriteLine($" {book.BookId}. {book.Title}");
         }
     }
 }
@@ -57,3 +64,21 @@ static void AddAuthorWithBook(Author author, Book[] books)
     context.Authors.Add(author);
     context.SaveChanges();
 }
+
+static void GetAuthorsWithBooks()
+{
+    using var context = new PublisherDbContext();
+
+    var authors = context.Authors.Include(a => a.Books).ToList();
+    foreach (var author in authors)
+    {
+        ForegroundColor = ConsoleColor.Yellow;
+        WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
+        foreach (var book in author.Books)
+        {
+            ForegroundColor = ConsoleColor.Cyan;
+            WriteLine($" {book.BookId}. {book.Title}");
+        }
+    }
+}
+

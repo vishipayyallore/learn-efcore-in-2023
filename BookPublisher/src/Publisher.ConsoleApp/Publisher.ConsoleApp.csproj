@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Publisher.Domain\Publisher.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Using Include="System.Console" Static="true"/>
+  </ItemGroup>
+  
 </Project>
