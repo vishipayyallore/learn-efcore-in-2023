@@ -14,7 +14,7 @@ AuthorsRepository.AddAuthor(GetAuthor("Scott", "Rudy"));
 
 AuthorsRepository.GetAuthors();
 
-AuthorsRepository.AddAuthorWithBook(new Author { FirstName = "Julie", LastName = "Lerman" },
+AuthorsRepository.AddAuthorWithBook(GetAuthor("Julie",  "Lerman" ),
     new Book[]
     {
         new Book { Title = "Programming Entity Framework", PublishDate = new DateTime(2009, 1, 1) },
