@@ -9,8 +9,8 @@ using (PublisherDbContext context = new())
 
 AuthorsRepository.GetAuthors();
 
-AuthorsRepository.AddAuthor(new Author { FirstName = "Sri", LastName = "Varu" });
-AuthorsRepository.AddAuthor(new Author { FirstName = "Scott", LastName = "Rudy" });
+AuthorsRepository.AddAuthor(GetAuthor("Sri", "Varu"));
+AuthorsRepository.AddAuthor(GetAuthor("Scott", "Rudy"));
 
 AuthorsRepository.GetAuthors();
 
@@ -28,4 +28,5 @@ ResetColor();
 WriteLine("\n\nPress any key ...");
 ReadKey();
 
-
+static Author GetAuthor(string firstName, string lastName) =>
+    new() { FirstName = firstName, LastName = lastName };
