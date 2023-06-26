@@ -4,14 +4,16 @@ using Publisher.Domain;
 
 EnsureDatabaseCreated();
 
-AuthorsRepository.GetAuthors();
+using PublisherDbContext _publisherDbContext = new();
 
-AuthorsRepository.AddAuthor(GetAuthor("Sri", "Varu"));
-AuthorsRepository.AddAuthor(GetAuthor("Scott", "Rudy"));
-AuthorsRepository.GetAuthors();
+AuthorsRepository.GetAuthors(_publisherDbContext);
 
-AuthorsRepository.AddAuthorWithBook(GetAuthor("Julie", "Lerman"), GetFewBooks());
-AuthorsRepository.GetAuthorsWithBooks();
+AuthorsRepository.AddAuthor(GetAuthor("Sri", "Varu"), _publisherDbContext);
+AuthorsRepository.AddAuthor(GetAuthor("Scott", "Rudy"), _publisherDbContext);
+AuthorsRepository.GetAuthors(_publisherDbContext);
+
+AuthorsRepository.AddAuthorWithBook(GetAuthor("Julie", "Lerman"), GetFewBooks(), _publisherDbContext);
+AuthorsRepository.GetAuthorsWithBooks(_publisherDbContext);
 
 ResetColor();
 

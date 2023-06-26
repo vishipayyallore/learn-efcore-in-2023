@@ -6,10 +6,9 @@ namespace Publisher.ConsoleApp.Repositories;
 
 public static class AuthorsRepository
 {
-    public static void GetAuthors()
+    public static void GetAuthors(PublisherDbContext publisherDbContext)
     {
-        using var context = new PublisherDbContext();
-        var authors = context.Authors.ToList();
+        var authors = publisherDbContext.Authors.ToList();
 
         foreach (var author in authors)
         {
@@ -18,31 +17,27 @@ public static class AuthorsRepository
         }
     }
 
-    public static void AddAuthor(Author author)
+    public static void AddAuthor(Author author, PublisherDbContext publisherDbContext)
     {
-        using var context = new PublisherDbContext();
-
-        context.Authors.Add(author);
-        context.SaveChanges();
+        publisherDbContext.Authors.Add(author);
+        _ = publisherDbContext.SaveChanges();
     }
 
-    public static void AddAuthorWithBook(Author author, Book[] books)
+    public static void AddAuthorWithBook(Author author, Book[] books, PublisherDbContext publisherDbContext)
     {
         foreach (var book in books)
         {
             author.Books.Add(book);
         }
-        using var context = new PublisherDbContext();
 
-        context.Authors.Add(author);
-        context.SaveChanges();
+        publisherDbContext.Authors.Add(author);
+        _ = publisherDbContext.SaveChanges();
     }
 
-    public static void GetAuthorsWithBooks()
+    public static void GetAuthorsWithBooks(PublisherDbContext publisherDbContext)
     {
-        using var context = new PublisherDbContext();
+        var authors = publisherDbContext.Authors.Include(a => a.Books).ToList();
 
-        var authors = context.Authors.Include(a => a.Books).ToList();
         foreach (var author in authors)
         {
             ForegroundColor = ConsoleColor.Yellow;
