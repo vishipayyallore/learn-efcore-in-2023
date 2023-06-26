@@ -2,7 +2,7 @@
 using Publisher.Data;
 using Publisher.Domain;
 
-EnsureDbCreated();
+EnsureDatabaseCreated();
 
 AuthorsRepository.GetAuthors();
 
@@ -18,7 +18,7 @@ ResetColor();
 WriteLine("\n\nPress any key ...");
 ReadKey();
 
-static void EnsureDbCreated()
+static void EnsureDatabaseCreated()
 {
     using PublisherDbContext context = new();
     _ = context.Database.EnsureCreated();
