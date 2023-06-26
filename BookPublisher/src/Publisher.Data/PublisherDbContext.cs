@@ -5,7 +5,7 @@ namespace Publisher.Data;
 
 public class PublisherDbContext : DbContext
 {
-    const string dbConnectionString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PubDatabase";
+    const string dbConnectionString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PublisherDatabase";
 
     public DbSet<Author> Authors => Set<Author>();
 
