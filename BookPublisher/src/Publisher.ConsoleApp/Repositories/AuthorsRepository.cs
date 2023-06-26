@@ -65,4 +65,17 @@ public static class AuthorsRepository
         //    .Where(a => EF.Functions.Like(a.LastName, filter)).ToList();
     }
 
+    public static void QueryFiltersWithLike(string filter, PublisherDbContext publisherDbContext)
+    {
+        WriteLine($"***** QueryFilters With Like *****");
+
+        var authors = publisherDbContext.Authors
+            .Where(a => EF.Functions.Like(a.LastName!, filter)).ToList();
+
+        foreach (var author in authors)
+        {
+            WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
+        }
+
+    }
 }

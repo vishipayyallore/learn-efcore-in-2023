@@ -20,6 +20,9 @@ var name = "Josie";
 ForegroundColor = ConsoleColor.Cyan;
 AuthorsRepository.QueryFilters(name, _publisherDbContext);
 
+var filter = "L%";
+AuthorsRepository.QueryFiltersWithLike(filter, _publisherDbContext);
+
 ResetColor();
 
 WriteLine("\n\nPress any key ...");
