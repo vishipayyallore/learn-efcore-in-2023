@@ -44,10 +44,25 @@ public static class AuthorsRepository
             WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
             foreach (var book in author.Books)
             {
-                ForegroundColor = ConsoleColor.Cyan;
+                ForegroundColor = ConsoleColor.Magenta;
                 WriteLine($"\t{book.BookId}. {book.Title}");
             }
         }
+    }
+
+    public static void QueryFilters(string name, PublisherDbContext publisherDbContext)
+    {
+        WriteLine($"***** QueryFilters *****");
+        var authors = publisherDbContext.Authors.Where(s => s.FirstName == name).ToList();
+
+        foreach (var author in authors)
+        {
+            WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
+        }
+
+        //var filter = "L%";
+        //var authors = _context.Authors
+        //    .Where(a => EF.Functions.Like(a.LastName, filter)).ToList();
     }
 
 }
