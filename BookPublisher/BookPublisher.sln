@@ -5,11 +5,16 @@ VisualStudioVersion = 17.7.33808.371
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1E72628C-B5C1-41BB-8759-B70BE6785504}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher.Domain", "src\Publisher.Domain\Publisher.Domain.csproj", "{DE2B9AD5-C556-4823-BB8C-D444DD7CCA66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publisher.Domain", "src\Publisher.Domain\Publisher.Domain.csproj", "{DE2B9AD5-C556-4823-BB8C-D444DD7CCA66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher.Data", "src\Publisher.Data\Publisher.Data.csproj", "{179FF196-152C-4DA6-8C4E-1E9DED23794D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publisher.Data", "src\Publisher.Data\Publisher.Data.csproj", "{179FF196-152C-4DA6-8C4E-1E9DED23794D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publisher.ConsoleApp", "src\Publisher.ConsoleApp\Publisher.ConsoleApp.csproj", "{F609DB65-F51E-4839-8A9B-E526C42A3260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publisher.ConsoleApp", "src\Publisher.ConsoleApp\Publisher.ConsoleApp.csproj", "{F609DB65-F51E-4839-8A9B-E526C42A3260}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58C3A6B9-2273-4F5A-B819-490617A1EDB4}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

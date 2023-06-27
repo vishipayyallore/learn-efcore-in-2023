@@ -2,23 +2,33 @@
 using Publisher.Data;
 using Publisher.Domain;
 
-EnsureDbCreated();
+EnsureDatabaseCreated();
 
-AuthorsRepository.GetAuthors();
+using PublisherDbContext _publisherDbContext = new();
 
-AuthorsRepository.AddAuthor(GetAuthor("Sri", "Varu"));
-AuthorsRepository.AddAuthor(GetAuthor("Scott", "Rudy"));
-AuthorsRepository.GetAuthors();
+AuthorsRepository.GetAuthors(_publisherDbContext);
 
-AuthorsRepository.AddAuthorWithBook(GetAuthor("Julie", "Lerman"), GetFewBooks());
-AuthorsRepository.GetAuthorsWithBooks();
+AuthorsRepository.AddAuthor(GetAuthor("Sri", "Varu"), _publisherDbContext);
+AuthorsRepository.AddAuthor(GetAuthor("Scott", "Rudy"), _publisherDbContext);
+AuthorsRepository.AddAuthor(GetAuthor("Josie", "Newf"), _publisherDbContext);
+AuthorsRepository.GetAuthors(_publisherDbContext);
+
+AuthorsRepository.AddAuthorWithBook(GetAuthor("Julie", "Lerman"), GetFewBooks(), _publisherDbContext);
+AuthorsRepository.GetAuthorsWithBooks(_publisherDbContext);
+
+var name = "Josie";
+ForegroundColor = ConsoleColor.Cyan;
+AuthorsRepository.QueryFilters(name, _publisherDbContext);
+
+var filter = "L%";
+AuthorsRepository.QueryFiltersWithLike(filter, _publisherDbContext);
 
 ResetColor();
 
 WriteLine("\n\nPress any key ...");
 ReadKey();
 
-static void EnsureDbCreated()
+static void EnsureDatabaseCreated()
 {
     using PublisherDbContext context = new();
     _ = context.Database.EnsureCreated();
@@ -35,3 +45,4 @@ static Book[] GetFewBooks() => new Book[]
             GetBook("Programming Entity Framework", new DateTime(2009, 1, 1)),
             GetBook("Programming Entity Framework 2nd Ed", new DateTime(2010, 8, 1))
         };
+
