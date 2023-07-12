@@ -92,4 +92,18 @@ public static class AuthorsRepository
         WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
     }
 
+    public static void SkipAndTakeAuthors(PublisherDbContext publisherDbContext)
+    {
+        var groupSize = 2;
+        for (int i = 0; i < 5; i++)
+        {
+            var authors = publisherDbContext.Authors.Skip(groupSize * i).Take(groupSize).ToList();
+            Console.WriteLine($"Group {i}:");
+            foreach (var author in authors)
+            {
+                Console.WriteLine($" {author.FirstName} {author.LastName}");
+            }
+        }
+    }
+
 }
