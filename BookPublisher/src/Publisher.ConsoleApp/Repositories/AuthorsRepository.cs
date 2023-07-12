@@ -79,4 +79,17 @@ public static class AuthorsRepository
         }
 
     }
+
+    public static void FindIt(PublisherDbContext publisherDbContext, int id)
+    {
+        var author = publisherDbContext.Authors.Find(id);
+
+        if (author == null)
+        {
+            return;
+        }
+
+        WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
+    }
+
 }
