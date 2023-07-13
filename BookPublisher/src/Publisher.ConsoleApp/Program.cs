@@ -32,6 +32,9 @@ AuthorsRepository.SkipAndTakeAuthors(_publisherDbContext);
 ForegroundColor = ConsoleColor.Yellow;
 AuthorsRepository.SortAuthors(_publisherDbContext);
 
+ForegroundColor = ConsoleColor.DarkCyan;
+AuthorsRepository.QueryAggregate(_publisherDbContext);
+
 ResetColor();
 
 WriteLine("\n\nPress any key ...");

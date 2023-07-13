@@ -111,18 +111,26 @@ public static class AuthorsRepository
     public static void SortAuthors(PublisherDbContext publisherDbContext)
     {
         var authorsByLastName = publisherDbContext.Authors
-            .OrderBy(a => a.LastName)
-            .ThenBy(a => a.FirstName).ToList();
+                                    .OrderBy(a => a.LastName)
+                                    .ThenBy(a => a.FirstName).ToList();
         authorsByLastName.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
 
         var authorsDescending = publisherDbContext.Authors
-            .OrderByDescending(a => a.LastName)
-            .ThenByDescending(a => a.FirstName).ToList();
+                                    .OrderByDescending(a => a.LastName)
+                                    .ThenByDescending(a => a.FirstName).ToList();
         WriteLine("**Descending Last and First**");
         authorsDescending.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
 
-        var lermans = publisherDbContext.Authors.Where(a => a.LastName == "Lerman").OrderByDescending(a => a.FirstName).ToList();
+        var lermans = publisherDbContext.Authors.Where(a => a.LastName == "Lerman")
+                        .OrderByDescending(a => a.FirstName).ToList();
         lermans.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
+    }
+
+    public static void QueryAggregate(PublisherDbContext publisherDbContext)
+    {
+        var author = publisherDbContext.Authors.OrderByDescending(a => a.FirstName)
+                        .FirstOrDefault(a => a.LastName == "Lerman");
+        WriteLine(author.LastName + "," + author.FirstName);
     }
 
 }
