@@ -50,6 +50,7 @@ public static class AuthorsRepository
         }
     }
 
+    #region Filters
     public static void QueryFilters(string name, PublisherDbContext publisherDbContext)
     {
         WriteLine($"***** QueryFilters *****");
@@ -105,5 +106,6 @@ public static class AuthorsRepository
             }
         }
     }
+    #endregion
 
 }
