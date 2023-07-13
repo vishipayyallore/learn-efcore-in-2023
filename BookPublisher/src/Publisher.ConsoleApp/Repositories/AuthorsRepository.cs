@@ -65,6 +65,7 @@ public static class AuthorsRepository
         //    .Where(a => EF.Functions.Like(a.LastName, filter)).ToList();
     }
 
+    // Tip: LINQ .Contains() method will translate into SQL Like(%abc%)
     public static void QueryFiltersWithLike(string filter, PublisherDbContext publisherDbContext)
     {
         WriteLine($"***** QueryFilters With Like *****");
@@ -78,4 +79,31 @@ public static class AuthorsRepository
         }
 
     }
+
+    public static void FindIt(PublisherDbContext publisherDbContext, int id)
+    {
+        var author = publisherDbContext.Authors.Find(id);
+
+        if (author == null)
+        {
+            return;
+        }
+
+        WriteLine($"{author.Id} {author.FirstName} {author.LastName} --");
+    }
+
+    public static void SkipAndTakeAuthors(PublisherDbContext publisherDbContext)
+    {
+        var groupSize = 2;
+        for (int i = 0; i < 5; i++)
+        {
+            var authors = publisherDbContext.Authors.Skip(groupSize * i).Take(groupSize).ToList();
+            Console.WriteLine($"Group {i}:");
+            foreach (var author in authors)
+            {
+                Console.WriteLine($" {author.FirstName} {author.LastName}");
+            }
+        }
+    }
+
 }

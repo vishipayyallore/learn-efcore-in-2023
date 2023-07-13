@@ -23,6 +23,11 @@ AuthorsRepository.QueryFilters(name, _publisherDbContext);
 var filter = "L%";
 AuthorsRepository.QueryFiltersWithLike(filter, _publisherDbContext);
 
+ForegroundColor = ConsoleColor.DarkGray;
+AuthorsRepository.FindIt(_publisherDbContext, 2);
+
+ForegroundColor = ConsoleColor.Red;
+AuthorsRepository.SkipAndTakeAuthors(_publisherDbContext);
 ResetColor();
 
 WriteLine("\n\nPress any key ...");
