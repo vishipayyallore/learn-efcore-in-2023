@@ -99,10 +99,10 @@ public static class AuthorsRepository
         for (int i = 0; i < 5; i++)
         {
             var authors = publisherDbContext.Authors.Skip(groupSize * i).Take(groupSize).ToList();
-            Console.WriteLine($"Group {i}:");
+            WriteLine($"Group {i}:");
             foreach (var author in authors)
             {
-                Console.WriteLine($" {author.FirstName} {author.LastName}");
+                WriteLine($" {author.FirstName} {author.LastName}");
             }
         }
     }
@@ -113,16 +113,16 @@ public static class AuthorsRepository
         var authorsByLastName = publisherDbContext.Authors
             .OrderBy(a => a.LastName)
             .ThenBy(a => a.FirstName).ToList();
-        authorsByLastName.ForEach(a => Console.WriteLine(a.LastName + "," + a.FirstName));
+        authorsByLastName.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
 
         var authorsDescending = publisherDbContext.Authors
             .OrderByDescending(a => a.LastName)
             .ThenByDescending(a => a.FirstName).ToList();
-        Console.WriteLine("**Descending Last and First**");
-        authorsDescending.ForEach(a => Console.WriteLine(a.LastName + "," + a.FirstName));
-        
+        WriteLine("**Descending Last and First**");
+        authorsDescending.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
+
         var lermans = publisherDbContext.Authors.Where(a => a.LastName == "Lerman").OrderByDescending(a => a.FirstName).ToList();
-        lermans.ForEach(a => Console.WriteLine(a.LastName + "," + a.FirstName));
+        lermans.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
     }
 
 }
