@@ -65,7 +65,7 @@ public static class AuthorsRepository
         //    .Where(a => EF.Functions.Like(a.LastName, filter)).ToList();
     }
 
-    // Tip: LINQ .Contains() method will translate into SQL Like(%abc%)
+    // Tip: LINQ .Contains() method will translate into EF.Functions.Like(%abc%)
     public static void QueryFiltersWithLike(string filter, PublisherDbContext publisherDbContext)
     {
         WriteLine($"***** QueryFilters With Like *****");
