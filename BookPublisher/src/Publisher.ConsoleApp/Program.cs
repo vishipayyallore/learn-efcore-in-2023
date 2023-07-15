@@ -26,8 +26,15 @@ AuthorsRepository.QueryFiltersWithLike(filter, _publisherDbContext);
 ForegroundColor = ConsoleColor.DarkGray;
 AuthorsRepository.FindIt(_publisherDbContext, 2);
 
-ForegroundColor = ConsoleColor.Red;
+ForegroundColor = ConsoleColor.DarkGreen;
 AuthorsRepository.SkipAndTakeAuthors(_publisherDbContext);
+
+ForegroundColor = ConsoleColor.Yellow;
+AuthorsRepository.SortAuthors(_publisherDbContext);
+
+ForegroundColor = ConsoleColor.DarkCyan;
+AuthorsRepository.QueryAggregate(_publisherDbContext);
+
 ResetColor();
 
 WriteLine("\n\nPress any key ...");

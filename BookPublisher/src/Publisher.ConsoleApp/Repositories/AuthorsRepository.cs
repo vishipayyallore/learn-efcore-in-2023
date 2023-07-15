@@ -50,6 +50,7 @@ public static class AuthorsRepository
         }
     }
 
+    #region Filters
     public static void QueryFilters(string name, PublisherDbContext publisherDbContext)
     {
         WriteLine($"***** QueryFilters *****");
@@ -65,7 +66,7 @@ public static class AuthorsRepository
         //    .Where(a => EF.Functions.Like(a.LastName, filter)).ToList();
     }
 
-    // Tip: LINQ .Contains() method will translate into SQL Like(%abc%)
+    // Tip: LINQ .Contains() method will translate into EF.Functions.Like(%abc%)
     public static void QueryFiltersWithLike(string filter, PublisherDbContext publisherDbContext)
     {
         WriteLine($"***** QueryFilters With Like *****");
@@ -98,12 +99,38 @@ public static class AuthorsRepository
         for (int i = 0; i < 5; i++)
         {
             var authors = publisherDbContext.Authors.Skip(groupSize * i).Take(groupSize).ToList();
-            Console.WriteLine($"Group {i}:");
+            WriteLine($"Group {i}:");
             foreach (var author in authors)
             {
-                Console.WriteLine($" {author.FirstName} {author.LastName}");
+                WriteLine($" {author.FirstName} {author.LastName}");
             }
         }
+    }
+    #endregion
+
+    public static void SortAuthors(PublisherDbContext publisherDbContext)
+    {
+        var authorsByLastName = publisherDbContext.Authors
+                                    .OrderBy(a => a.LastName)
+                                    .ThenBy(a => a.FirstName).ToList();
+        authorsByLastName.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
+
+        var authorsDescending = publisherDbContext.Authors
+                                    .OrderByDescending(a => a.LastName)
+                                    .ThenByDescending(a => a.FirstName).ToList();
+        WriteLine("**Descending Last and First**");
+        authorsDescending.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
+
+        var lermans = publisherDbContext.Authors.Where(a => a.LastName == "Lerman")
+                        .OrderByDescending(a => a.FirstName).ToList();
+        lermans.ForEach(a => WriteLine(a.LastName + "," + a.FirstName));
+    }
+
+    public static void QueryAggregate(PublisherDbContext publisherDbContext)
+    {
+        var author = publisherDbContext.Authors.OrderByDescending(a => a.FirstName)
+                        .FirstOrDefault(a => a.LastName == "Lerman");
+        WriteLine(author.LastName + "," + author.FirstName);
     }
 
 }
