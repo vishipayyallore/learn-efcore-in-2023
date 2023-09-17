@@ -4,7 +4,7 @@ public class Author
 {
     public Author()
     {
-        Books = new List<Book>();
+        Books = [];
     }
 
     public int Id { get; set; }
